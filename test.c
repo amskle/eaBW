@@ -281,13 +281,15 @@ void changeRecord() {
         return;
     }
     printf("最后一条记录: \n%s\n",lines[count-1]);
-    char mode[16], victor[16];
+    char mode[32], victor[32];
     int black, white;
     double btime, wtime;
-    sscanf(lines[count-1], "%15s,%d,%d,%lf,%lf,%15s", mode, &black, &white, &btime, &wtime, victor);
-    printf("请输入新的胜者（黑方/白方/平局）：");
-    char newVictor[16];
-    scanf("%15s", newVictor); getchar();
+    sscanf(lines[count-1], "%[^,],%d,%d,%lf,%lf,%[^,\n]", mode, &black, &white, &btime, &wtime, victor);
+    printf("请输入新的胜者（black/white/draw）：");
+    char newVictor[32];
+    // scanf("%15s", newVictor); getchar();
+    fgets(newVictor, sizeof(newVictor), stdin);
+    newVictor[strcspn(newVictor, "\n")] = 0;
     // 重新写入所有记录，修改最后一条
     FILE *fw = fopen(RECORD_FILE, "w");
     for (int i = 0; i < count-1; i++) {
