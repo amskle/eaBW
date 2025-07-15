@@ -374,13 +374,13 @@ void menu() {
             scanf("%d", &mode); 
             getchar();
             GameRecord rec = {0};
-            clock_t bStart = 0, wStart = 0;
+            // clock_t bStart = 0, wStart = 0;
             double bTime = 0, wTime = 0;
             initializeBoard();
             currentPlayer = WHITE;
             bool gameOver = false;
             int passCount = 0;
-            printf("游戏开始！白方先行。\n白心为黑棋，黑心为白棋");
+            printf("游戏开始！白方先行。\n");
             strcpy(rec.mode, mode == 2 ? "人机" : "对战");
             while (!gameOver) {
                 displayBoardEx(bTime, wTime);
